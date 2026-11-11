@@ -32,8 +32,9 @@ Absolute URLs appear only in `canonical`, `hreflang`, Open Graph tags, JSON-LD, 
 Each language is a separate file. Edit the English text in `index.html` and the Spanish text in `es/index.html`;
 keep both in step. Sections in the home pages are marked by `id`: `about`, `products`, `customers`, `process`, `contact`.
 
-Contact details (email, phone, address, business hours, LinkedIn) and the state of formation have not been provided yet,
-so they are not shown anywhere. Each place where one should be added is marked by an HTML comment starting with
+The confirmed contact email is `sales@vermilionfoods.com`, included in both languages and legal pages.
+Phone, address, business hours, LinkedIn and the state of formation have not been provided and remain omitted.
+Each place where additional data can be added is marked by an HTML comment starting with
 `<!-- data:` in the page source (search for `data:EMAIL`, `data:PHONE`, `data:STATE_OF_FORMATION`, `data:LINKEDIN_URL`, etc.).
 When adding them:
 
@@ -63,16 +64,17 @@ Then open <http://localhost:8000/>. The pages can also be opened directly from d
 3. Check `https://jarvis-solutions-lab.github.io/vermilion-foods/` and `…/es/`: styles, fonts, logos, language switch and legal links.
 4. Do **not** add a `CNAME` file in this phase.
 
-### Phase 2 — custom domain (when the owner confirms the domain)
+### Phase 2 — vermilionfoods.com (owner confirmed)
 
-1. Add a file named `CNAME` at the root whose only content is the domain (`DOMAIN`, written without `https://`).
-2. Settings → Pages → Custom domain: enter the same domain.
+1. The root `CNAME` file contains `vermilionfoods.com`.
+2. Settings → Pages → Custom domain: `vermilionfoods.com`.
 3. At the registrar, configure DNS. Confirm current values in the GitHub Pages documentation first; at the time of writing:
    - apex domain: four `A` records to `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`;
    - `www`: a `CNAME` record to `jarvis-solutions-lab.github.io`.
 4. When the certificate is issued, enable *Enforce HTTPS*.
-5. Replace `https://jarvis-solutions-lab.github.io/vermilion-foods/` with `https://DOMAIN/` in every page `<head>`, `404.html`, `sitemap.xml` and `robots.txt`.
-6. Verify `https://DOMAIN/`, `https://www.DOMAIN/` and `https://DOMAIN/es/` load over HTTPS.
+5. Canonical, hreflang, Open Graph, JSON-LD, 404, sitemap and robots use `https://vermilionfoods.com/`.
+6. Verify `https://vermilionfoods.com/`, `https://www.vermilionfoods.com/` and `https://vermilionfoods.com/es/` load over HTTPS after DNS and certificate issuance.
+7. Preserve all existing email DNS records (MX, SPF, DKIM, DMARC). Verify domain ownership in account Settings → Pages using the exact TXT challenge GitHub supplies; keep that TXT record afterwards.
 
 ## Licenses
 

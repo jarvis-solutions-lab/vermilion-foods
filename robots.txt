@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jarvis-solutions-lab.github.io/vermilion-foods/sitemap.xml
+Sitemap: https://vermilionfoods.com/sitemap.xml
