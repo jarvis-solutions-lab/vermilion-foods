@@ -17,6 +17,7 @@ assets/css/styles.css Design tokens and all styles
 assets/js/main.js     Progressive enhancement: mobile menu, reveal on scroll, footer year
 assets/fonts/         Self-hosted WOFF2 (Cormorant Garamond 500/600, Inter 400/500) + OFL licenses
 assets/img/           Logos (outlined SVG), favicon, apple-touch icon, Open Graph image
+assets/img/photo-*    Three illustrative photographs as responsive derivatives (.webp srcset + one .jpg fallback each)
 robots.txt            Allows all crawlers, points to sitemap.xml
 sitemap.xml           Six pages with language alternates
 .nojekyll             Disables Jekyll on GitHub Pages
@@ -43,6 +44,10 @@ When adding them:
 - Address: three lines inside an `<address>` element in the Contact card, under "VERMILION ALFA GROUP LLC / dba Vermilion Foods".
 - State of formation: extend the legal note in About to the full sentence ("…a limited liability company registered in {state}, United States.").
 - Also add `email`, `telephone` and `address` to the JSON-LD block in the `<head>` of both home pages.
+
+The three photographs on the home pages (hero, About, How we work) are illustrative only: they do not show
+the company's products, packaging, facilities, inventory, staff or customers, and each carries a visible caption saying so.
+They are served as WebP at several widths with a JPEG fallback, without metadata; only the hero image loads eagerly.
 
 Colours, fonts, spacing and components are defined at the top of `assets/css/styles.css` (`:root` tokens).
 
