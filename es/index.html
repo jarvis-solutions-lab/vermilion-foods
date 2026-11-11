@@ -53,8 +53,15 @@
   </header>
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="wrap hero-grid">
-        <div>
+      <div class="stage hero-stage">
+        <div class="plate plate--hero">
+          <picture>
+            <source type="image/webp" media="(max-width: 767.98px)" srcset="../assets/img/photo-ingredients-m-480.webp 480w, ../assets/img/photo-ingredients-m-712.webp 712w" sizes="100vw">
+            <source type="image/webp" srcset="../assets/img/photo-ingredients-d-480.webp 480w, ../assets/img/photo-ingredients-d-640.webp 640w" sizes="50vw">
+            <img src="../assets/img/photo-ingredients-480.jpg" width="480" height="546" alt="Cuencos y frascos con polvos de colores, perlas de tapioca oscuras, esferas anaranjadas y cubos de gelatina sobre una mesa de madera." decoding="async" fetchpriority="high">
+          </picture>
+        </div>
+        <div class="leaf hero-leaf">
           <p class="eyebrow">Insumos asiáticos para food service · Latinoamérica</p>
           <h1 id="hero-title">Insumos asiáticos para la industria gastronómica de Latinoamérica.</h1>
           <p class="lead">Vermilion Foods abastece insumos asiáticos no perecederos —empezando por todo lo que necesita un menú de bubble tea— a hoteles, restaurantes, cafeterías y distribuidores de América Latina.</p>
@@ -63,36 +70,26 @@
             <a class="link-arrow" href="#products">Qué ofrecemos <span class="arrow" aria-hidden="true">→</span></a>
           </div>
         </div>
-        <figure class="photo photo--hero">
-          <picture class="photo-frame">
-            <source type="image/webp" media="(max-width: 767.98px)" srcset="../assets/img/photo-ingredients-sq-360.webp 360w, ../assets/img/photo-ingredients-sq-640.webp 640w" sizes="(min-width: 528px) 480px, calc(100vw - 48px)">
-            <source type="image/webp" srcset="../assets/img/photo-ingredients-640.webp 640w" sizes="(min-width: 1280px) 460px, (min-width: 1024px) 36vw, (min-width: 768px) 35vw, (min-width: 528px) 480px, calc(100vw - 48px)">
-            <img src="../assets/img/photo-ingredients-540.jpg" width="540" height="675" alt="Vista cenital de cuencos, frascos de vidrio y bolsas de papel con polvos de varios colores, esferas oscuras y anaranjadas y cubos blancos, con cucharas de madera y palas metálicas sobre una superficie de madera oscura." decoding="async" fetchpriority="high">
-          </picture>
-          <figcaption>Imagen ilustrativa. No representa productos ni empaques de Vermilion Foods.</figcaption>
-        </figure>
       </div>
     </section>
 
     <section class="section section--warm" id="about" aria-labelledby="about-title">
-      <div class="wrap">
-        <p class="eyebrow" data-reveal>Nosotros</p>
-        <div class="about-grid">
+      <div class="stage about-stage">
+        <div class="about-head">
+          <p class="eyebrow" data-reveal>Nosotros</p>
           <h2 id="about-title" data-reveal>Un puente entre productores asiáticos y cocinas latinoamericanas.</h2>
-          <div class="about-body">
-            <div class="prose" data-reveal>
-              <p>Vermilion Foods es un proveedor de insumos asiáticos de alimentos y bebidas para empresas. Conectamos a fabricantes en Asia con operadores gastronómicos de Latinoamérica que necesitan productos consistentes, comunicación clara y un abastecimiento confiable.</p>
-              <p>Hoy nos enfocamos en la categoría de bubble tea, con un portafolio pensado para crecer junto al menú de nuestros clientes. Trabajamos exclusivamente con productos no perecederos, lo que simplifica la logística y mantiene una calidad predecible.</p>
-              <p class="legal-note">Vermilion Foods es un nombre comercial de <strong>VERMILION ALFA GROUP LLC</strong>.<!-- data:STATE_OF_FORMATION legal note --></p>
-            </div>
-            <figure class="photo photo--about" data-reveal>
-          <picture class="photo-frame">
-            <source type="image/webp" srcset="../assets/img/photo-preparation-480.webp 480w, ../assets/img/photo-preparation-720.webp 720w, ../assets/img/photo-preparation-960.webp 960w" sizes="(min-width: 1296px) 615px, (min-width: 1024px) 47vw, (min-width: 668px) 620px, calc(100vw - 48px)">
-            <img src="../assets/img/photo-preparation-720.jpg" width="720" height="540" alt="Una persona con delantal, vista de los hombros hacia abajo, vierte un líquido marrón desde una jarra de vidrio en una de varias bebidas con hielo sobre una barra, detrás de recipientes con polvos, botellas dosificadoras y cuencos con esferas de colores y cubos blancos." loading="lazy" decoding="async">
+        </div>
+        <div class="plate plate--about">
+          <picture>
+            <source type="image/webp" media="(max-width: 1023.98px)" srcset="../assets/img/photo-preparation-m-480.webp 480w, ../assets/img/photo-preparation-m-720.webp 720w" sizes="100vw">
+            <source type="image/webp" srcset="../assets/img/photo-preparation-d-640.webp 640w, ../assets/img/photo-preparation-d-880.webp 880w" sizes="(min-width: 1328px) calc(50vw + 100px), 59vw">
+            <img src="../assets/img/photo-preparation-480.jpg" width="480" height="442" alt="Bebidas con hielo servidas en una barra con cuencos de toppings y recipientes de polvo." loading="lazy" decoding="async">
           </picture>
-          <figcaption>Imagen ilustrativa. No muestra a un cliente, empleado ni establecimiento de Vermilion Foods.</figcaption>
-        </figure>
-          </div>
+        </div>
+        <div class="leaf about-leaf prose" data-reveal>
+          <p>Vermilion Foods es un proveedor de insumos asiáticos de alimentos y bebidas para empresas. Conectamos a fabricantes en Asia con operadores gastronómicos de Latinoamérica que necesitan productos consistentes, comunicación clara y un abastecimiento confiable.</p>
+          <p>Hoy nos enfocamos en la categoría de bubble tea, con un portafolio pensado para crecer junto al menú de nuestros clientes. Trabajamos exclusivamente con productos no perecederos, lo que simplifica la logística y mantiene una calidad predecible.</p>
+          <p class="legal-note">Vermilion Foods es un nombre comercial de <strong>VERMILION ALFA GROUP LLC</strong>.<!-- data:STATE_OF_FORMATION legal note --></p>
         </div>
       </div>
     </section>
@@ -161,36 +158,36 @@
     </section>
 
     <section class="section" id="process" aria-labelledby="process-title">
-      <div class="wrap">
-        <div class="process-grid">
-        <div class="section-head">
+      <div class="stage process-stage">
+        <div class="plate plate--process">
+          <picture>
+            <source type="image/webp" media="(max-width: 1023.98px)" srcset="../assets/img/photo-supply-m-480.webp 480w, ../assets/img/photo-supply-m-720.webp 720w" sizes="100vw">
+            <source type="image/webp" srcset="../assets/img/photo-supply-d-640.webp 640w, ../assets/img/photo-supply-d-880.webp 880w" sizes="(min-width: 1328px) calc(50vw + 100px), 59vw">
+            <img src="../assets/img/photo-supply-480.jpg" width="480" height="300" alt="Una persona con una tablilla en el pasillo de un almacén, entre estanterías con sacos, cajas y pallets." loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <div class="section-head process-head">
           <p class="eyebrow" data-reveal>Cómo trabajamos</p>
           <h2 id="process-title" data-reveal>Del origen a su operación.</h2>
         </div>
-        <ol class="steps">
-          <li class="step" data-reveal>
-            <span class="numeral" aria-hidden="true">01</span>
-            <h3>Abastecimiento</h3>
-            <p>Seleccionamos productos de fabricantes establecidos en Asia.</p>
-          </li>
-          <li class="step" data-reveal>
-            <span class="numeral" aria-hidden="true">02</span>
-            <h3>Cadena de suministro</h3>
-            <p>Coordinamos el recorrido desde el origen hasta el mercado de destino.</p>
-          </li>
-          <li class="step" data-reveal>
-            <span class="numeral" aria-hidden="true">03</span>
-            <h3>Servicio</h3>
-            <p>Atención en español e inglés, antes y después de cada pedido.</p>
-          </li>
-        </ol>
-        <figure class="photo photo--process" data-reveal>
-          <picture class="photo-frame">
-            <source type="image/webp" srcset="../assets/img/photo-supply-480.webp 480w, ../assets/img/photo-supply-720.webp 720w, ../assets/img/photo-supply-960.webp 960w" sizes="(min-width: 1280px) 470px, (min-width: 1024px) 36vw, (min-width: 528px) 480px, calc(100vw - 48px)">
-            <img src="../assets/img/photo-supply-720.jpg" width="720" height="480" alt="Una persona de espaldas, con gorra, redecilla y delantal, escribe en una tablilla en el pasillo de un almacén con estanterías que contienen sacos, pallets envueltos y cajas de cartón." loading="lazy" decoding="async">
-          </picture>
-          <figcaption>Imagen ilustrativa. No muestra instalaciones, inventario ni personal de Vermilion Foods.</figcaption>
-        </figure>
+        <div class="leaf process-leaf">
+          <ol class="steps">
+            <li class="step" data-reveal>
+              <span class="numeral" aria-hidden="true">01</span>
+              <h3>Abastecimiento</h3>
+              <p>Seleccionamos productos de fabricantes establecidos en Asia.</p>
+            </li>
+            <li class="step" data-reveal>
+              <span class="numeral" aria-hidden="true">02</span>
+              <h3>Cadena de suministro</h3>
+              <p>Coordinamos el recorrido desde el origen hasta el mercado de destino.</p>
+            </li>
+            <li class="step" data-reveal>
+              <span class="numeral" aria-hidden="true">03</span>
+              <h3>Servicio</h3>
+              <p>Atención en español e inglés, antes y después de cada pedido.</p>
+            </li>
+          </ol>
         </div>
       </div>
     </section>

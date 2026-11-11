@@ -373,36 +373,74 @@ h3 {
 .section--warm { background: var(--paper-warm); }
 .section-head { max-width: 820px; margin-bottom: clamp(48px, 6vw, 80px); }
 
-/* Hero */
-.hero { padding-block: clamp(56px, 9vw, 128px) var(--section); overflow: hidden; }
-.hero-grid { display: grid; gap: clamp(40px, 6vw, 72px); align-items: center; }
+/* ---------- Composition: photographic plates + paper leaves ----------
+   .stage is a 12-column grid with two bleed tracks, so a plate can start on a column line and run
+   to the viewport edge. Lines: 1 full-start | 2 = col 1 … 13 = col 12 | 14 content-end | 15 full-end.
+   Text always sits on a plain paper leaf that overlaps the plate edge; never on the photograph. */
+.stage {
+  display: grid;
+  grid-template-columns: [full-start] minmax(var(--gutter), 1fr) [content-start] repeat(12, minmax(0, 100px)) [content-end] minmax(var(--gutter), 1fr) [full-end];
+}
+.stage > * { grid-column: content-start / content-end; min-width: 0; }
+.plate { position: relative; overflow: hidden; background: var(--vermilion-tint); }
+.plate picture, .plate img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.plate img { object-fit: cover; object-position: 50% 50%; }
+.leaf { position: relative; z-index: 1; background: var(--paper); }
+
+/* Hero — mobile: full-bleed 4:3 plate on top, the headline leaf rises over its lower edge,
+   leaving a strip of photograph to the right. */
+.hero { padding-bottom: var(--section); }
+.plate--hero { grid-column: full-start / full-end; grid-row: 1; aspect-ratio: 4 / 3; }
+.hero-leaf {
+  grid-column: full-start / content-end;
+  grid-row: 2;
+  margin-top: -48px;
+  padding: 28px 16px 0 var(--gutter);
+}
 .hero h1 { max-width: 18ch; }
-.hero .lead { margin-top: clamp(24px, 3vw, 36px); }
-.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 32px; margin-top: clamp(32px, 4vw, 48px); }
+.hero .lead { margin-top: clamp(20px, 3vw, 36px); }
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 32px; margin-top: clamp(28px, 4vw, 48px); }
+.hero .eyebrow { margin-bottom: clamp(18px, 3vw, 36px); }
 
-/* Photographs (illustrative) */
-.photo { margin: 0; }
-.photo-frame { display: block; overflow: hidden; border-radius: 2px; background: var(--vermilion-tint); aspect-ratio: 4 / 3; }
-.photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
-.photo figcaption { margin-top: 12px; max-width: 46ch; font-size: 0.8125rem; line-height: 1.5; color: var(--gray); }
-
-/* Hero photo */
-.photo--hero { width: min(100%, 480px); }
-.photo--hero .photo-frame { aspect-ratio: 1 / 1; }
+/* Hero — from 768px: plate from column 7 to the right edge, full hero height (it meets the header
+   and the About section). The leaf spans columns 1–7 and overlaps the plate's first column. */
 @media (min-width: 768px) {
-  .hero-grid { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 40px; }
-  .photo--hero { width: 100%; }
-  .photo--hero .photo-frame { aspect-ratio: 4 / 5; }
+  .hero { padding-bottom: 0; }
+  .hero-stage { min-height: clamp(560px, calc(100svh - var(--header-h)), 860px); }
+  .plate--hero { grid-column: 8 / full-end; grid-row: 1; aspect-ratio: auto; }
+  .hero-leaf {
+    grid-column: content-start / 9;
+    grid-row: 1;
+    align-self: center;
+    margin: 64px 0; /* the row (and so the plate) grows if needed: photo always shows >= 64px above/below */
+    padding: clamp(32px, 3.5vw, 48px) clamp(32px, 4vw, 56px) clamp(32px, 3.5vw, 48px) 0;
+  }
 }
+/* Keep the leaf clearly shorter than the plate in both languages (ES headline runs to 4 lines),
+   so the photograph shows above and below the overlap instead of thin slivers. */
 @media (min-width: 1024px) {
-  .hero-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(40px, 6vw, 72px); }
-  .photo--hero { max-width: 460px; justify-self: end; }
+  .hero h1 { font-size: clamp(3rem, 4.7vw, 4.25rem); }
+}
+/* 768–1023: plate image centred on the middle column of bowls */
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .hero-leaf { grid-column: content-start / 10; }
+  .plate--hero { grid-column: 9 / full-end; }
+  .hero h1 { font-size: clamp(2.5rem, 5.6vw, 3.25rem); }
 }
 
-/* About */
-.about-grid { display: grid; gap: clamp(32px, 5vw, 80px); }
+/* About — mobile: heading, full-bleed plate, then a white leaf that rises 64px over the plate
+   from the right (plate peeks on the left). */
+.about-head { grid-row: 1; margin-bottom: clamp(32px, 5vw, 48px); }
+.about-head .eyebrow { margin-bottom: clamp(20px, 3vw, 32px); }
+.plate--about { grid-column: full-start / full-end; grid-row: 2; aspect-ratio: 4 / 3; }
+.about-leaf {
+  grid-column: content-start / full-end;
+  grid-row: 3;
+  margin-top: -64px;
+  padding: 32px var(--gutter) 40px 24px;
+}
 .legal-note {
-  margin-top: clamp(32px, 4vw, 48px);
+  margin-top: clamp(28px, 4vw, 40px);
   padding-top: 24px;
   border-top: 1px solid var(--line);
   font-size: 0.9375rem;
@@ -410,11 +448,23 @@ h3 {
   max-width: var(--measure);
 }
 .legal-note strong { color: var(--ink); font-weight: 500; letter-spacing: 0.02em; }
-.about-body { display: grid; gap: clamp(40px, 5vw, 64px); }
-.photo--about { max-width: 620px; }
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .plate--about { aspect-ratio: 4 / 3; }
+  .about-leaf { grid-column: 4 / full-end; margin-top: -96px; padding: 40px var(--gutter) 48px 40px; }
+}
+/* About — desktop: plate from the left edge to the end of column 7; heading in columns 8–12 aligned
+   with the plate top; the leaf (columns 7–12) overlaps the plate by one column. */
 @media (min-width: 1024px) {
-  .about-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
-  .about-grid h2 { position: sticky; top: calc(var(--header-h) + 32px); align-self: start; }
+  .about-head { grid-column: 9 / content-end; grid-row: 1; margin: 0; padding-left: clamp(32px, 4vw, 56px); align-self: start; }
+  .plate--about { grid-column: full-start / 9; grid-row: 1 / 3; aspect-ratio: 1031 / 950; align-self: start; }
+  .about-leaf {
+    grid-column: 8 / content-end;
+    grid-row: 2;
+    margin: clamp(32px, 4vw, 48px) 0 0;
+    padding: clamp(36px, 3.5vw, 52px) clamp(36px, 3.5vw, 52px) clamp(36px, 3.5vw, 52px);
+    align-self: start;
+  }
+  .about-head h2 { font-size: clamp(2rem, 1.2rem + 1.8vw, 2.875rem); }
 }
 
 /* Cards */
@@ -458,27 +508,43 @@ h3 {
   .row { grid-template-columns: 64px minmax(0, 5fr) minmax(0, 6fr); align-items: baseline; }
 }
 
-/* How we work — steps */
-.steps { display: grid; gap: 48px; margin: 0; padding: 0; list-style: none; }
-.step { padding-top: 28px; border-top: 1px solid var(--ink); }
-.step .numeral { font-size: 1.75rem; margin-bottom: 20px; }
-.step h3 { margin-bottom: 12px; }
-.step p { color: var(--gray); }
-@media (min-width: 768px) { .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 4vw, 56px); } }
-.process-grid { display: grid; gap: 48px; }
-.process-grid .section-head { margin-bottom: 0; }
-.photo--process { width: min(100%, 480px); }
-.photo--process .photo-frame { aspect-ratio: 3 / 2; }
-/* 768–1023px keeps the stacked order (heading, steps, photo): with the photo in the top row the
-   image sat inside Chromium's lazy-load distance on the first screen (measured, perf-budget.json). */
-@media (min-width: 768px) {
-  .process-grid { row-gap: clamp(48px, 6vw, 80px); }
+/* How we work — mobile: full-bleed plate first; the heading leaf rises over its lower edge and
+   ends at column 10, so the plate stays visible on the right; the steps follow on the page. */
+.plate--process { grid-column: full-start / full-end; grid-row: 1; aspect-ratio: 4 / 3; }
+.process-head {
+  grid-column: full-start / 12;
+  grid-row: 2;
+  margin: -56px 0 0;
+  padding: 28px 24px 0 var(--gutter);
+  background: var(--paper);
+  position: relative;
+  z-index: 1;
 }
+.process-leaf { grid-row: 3; margin-top: clamp(40px, 6vw, 56px); }
+.steps { display: grid; gap: 40px; margin: 0; padding: 0; list-style: none; }
+.step { padding-top: 24px; border-top: 1px solid var(--ink); }
+.step .numeral { font-size: 1.75rem; margin-bottom: 16px; }
+.step h3 { margin-bottom: 10px; }
+.step p { color: var(--gray); }
+@media (min-width: 768px) {
+  .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 3.5vw, 48px); }
+}
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .plate--process { aspect-ratio: 16 / 10; }
+  .process-head { grid-column: full-start / 10; margin-top: -96px; padding: 40px 40px 0 var(--gutter); }
+}
+/* How we work — desktop: heading in columns 1–5 beside a 16:10 plate running from column 6 to the
+   right edge; the three steps share one leaf (columns 1–10) that overlaps the plate's lower band. */
 @media (min-width: 1024px) {
-  .process-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); grid-template-areas: "head photo" "steps steps"; column-gap: clamp(40px, 6vw, 72px); align-items: end; }
-  .process-grid .section-head { grid-area: head; }
-  .process-grid .steps { grid-area: steps; }
-  .photo--process { grid-area: photo; width: 100%; }
+  .process-head { grid-column: content-start / 7; grid-row: 1; align-self: center; margin: 0; padding: 0 clamp(32px, 4vw, 56px) 0 0; background: none; }
+  .plate--process { grid-column: 7 / full-end; grid-row: 1; aspect-ratio: 16 / 10; }
+  .process-leaf {
+    grid-column: content-start / 12;
+    grid-row: 2;
+    margin-top: clamp(-120px, -8vw, -88px);
+    background: var(--paper);
+    padding: clamp(36px, 3.5vw, 48px) clamp(36px, 3.5vw, 48px) 0 0;
+  }
 }
 
 /* Feature band — the only vermilion section */
@@ -567,6 +633,6 @@ h3 {
 }
 
 @media print {
-  .site-header, .band, .photo, .skip-link { display: none !important; }
+  .site-header, .band, .plate, .skip-link { display: none !important; }
   .site-footer { background: none; color: #000; }
 }
